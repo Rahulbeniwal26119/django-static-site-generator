@@ -13,7 +13,8 @@ settings.configure(
     MIDDLEWARE_CLASSES=(),
     INSTALLED_APPS=(
         'django.contrib.staticfiles',
-        'sitebuilder'
+        'sitebuilder',
+        'compressor'
     ),
     STATIC_URL='/static/',
     TEMPLATES=(
@@ -30,6 +31,12 @@ settings.configure(
     ],
     STATIC_ROOT=BASE_DIR / '_build' / 'static',
     ALLOWED_HOSTS=['localhost', 'testserver'],
+    STATICFILES_STORAGE='django.contrib.staticfiles.storage.ManifestStaticFilesStorage',
+    STATICFILES_FINDERS = (
+        'django.contrib.staticfiles.finders.FileSystemFinder',
+        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+        'compressor.finders.CompressorFinder'
+    )
 )
 
 if __name__ == "__main__":
